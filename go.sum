@@ -179,6 +179,10 @@ git.miem.hse.ru/1206/app v0.0.2-CM24-01 h1:/91AP79Dnogw2PRt4zyeu8kAD1JsbDlGah5TY
 git.miem.hse.ru/1206/app v0.0.2-CM24-01/go.mod h1:Qx8SnWgXDFIISmCAhUXYcmM7gdlCcU+vvju0irhZlic=
 git.miem.hse.ru/1206/app v0.0.2-CM24-02 h1:l0XAG4sWx+5Etv4E2RUcr6FNIqA9j/A2yRjngXie9qo=
 git.miem.hse.ru/1206/app v0.0.2-CM24-02/go.mod h1:Qx8SnWgXDFIISmCAhUXYcmM7gdlCcU+vvju0irhZlic=
+git.miem.hse.ru/1206/app v0.0.2-CM24-03 h1:bwoctsmg48SeG8CteevDYvvnHNAYn6QlqCs/s5Hobgw=
+git.miem.hse.ru/1206/app v0.0.2-CM24-03/go.mod h1:Qx8SnWgXDFIISmCAhUXYcmM7gdlCcU+vvju0irhZlic=
+git.miem.hse.ru/1206/app v0.0.2-CM24-04 h1:H0Uq2yb7kFE/KnFqtcHeoTLt354TG8KNRiw0yLKlBs0=
+git.miem.hse.ru/1206/app v0.0.2-CM24-04/go.mod h1:Qx8SnWgXDFIISmCAhUXYcmM7gdlCcU+vvju0irhZlic=
 git.miem.hse.ru/1206/app v0.0.2 h1:tffEpR7ddwrkV9jnw1N7MJEl7NT/FImJNZxlrNwSgFc=
 git.miem.hse.ru/1206/app v0.0.2/go.mod h1:S3Rvdx+NyTgWVRZBG8dzztFuSGeW/0jTpkdB8zTAhlY=
 github.com/Azure/go-ansiterm v0.0.0-20170929234023-d6e3b3328b78 h1:w+iIsaOQNcT7OZ575w+acHgRric5iCyQh+xv+KJ4HB8=

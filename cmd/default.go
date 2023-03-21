@@ -4,21 +4,18 @@ import (
 	"git.miem.hse.ru/1206/app/logger"
 	"git.miem.hse.ru/1206/app/storage/s3"
 	"git.miem.hse.ru/1206/material-library/internal/config"
+	"github.com/minio/minio-go/v7"
 )
+
+type Storage struct {
+	client *minio.Client
+}
+
+var instance *Storage
 
 func NewDefault(cfg *config.Config) *Cmd {
 	c := &Cmd{}
-
 	logger.Init(&cfg.Logger)
-
-	//client, err := minio.New(fmt.Sprintf("%s:%s", cfg.Storage.Host, cfg.Storage.Port), &minio.Options{
-	//	Creds:  credentials.NewStaticV4(cfg.Storage.AccessKeyId, cfg.Storage.SecretAccessKey, ""),
-	//	Secure: cfg.Storage.UseSsl,
-	//})
-	//fmt.Println(client)
-	//if err != nil {
-	//	logger.Get().Fatal(err)
-	//}
 
 	err := s3.InitConnect(&cfg.Storage)
 	if err != nil {

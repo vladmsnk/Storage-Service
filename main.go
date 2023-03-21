@@ -1,8 +1,8 @@
 package main
 
 import (
-	"git.miem.hse.ru/1206/microservice-template/cmd"
-	"git.miem.hse.ru/1206/microservice-template/internal/config"
+	"git.miem.hse.ru/1206/material-library/cmd"
+	"git.miem.hse.ru/1206/material-library/internal/config"
 	"log"
 )
 
