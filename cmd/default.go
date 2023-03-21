@@ -3,7 +3,7 @@ package cmd
 import (
 	"git.miem.hse.ru/1206/app/logger"
 	"git.miem.hse.ru/1206/app/storage/s3"
-	"git.miem.hse.ru/1206/microservice-template/internal/config"
+	"git.miem.hse.ru/1206/material-library/internal/config"
 )
 
 func NewDefault(cfg *config.Config) *Cmd {

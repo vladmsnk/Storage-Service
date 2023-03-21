@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"git.miem.hse.ru/1206/microservice-template/internal/config"
+	"git.miem.hse.ru/1206/material-library/internal/config"
 )
 
 func NewDebug(cfg *config.Config) *Cmd {

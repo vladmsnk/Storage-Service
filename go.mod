@@ -1,4 +1,4 @@
-module git.miem.hse.ru/1206/microservice-template
+module git.miem.hse.ru/1206/material-library
 
 go 1.19
 

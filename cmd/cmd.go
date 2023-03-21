@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"git.miem.hse.ru/1206/app"
-	"git.miem.hse.ru/1206/microservice-template/internal/config"
+	"git.miem.hse.ru/1206/material-library/internal/config"
 	"os"
 )
 
