@@ -2,6 +2,7 @@ package config
 
 import (
 	"flag"
+	"git.miem.hse.ru/1206/app"
 	"git.miem.hse.ru/1206/app/logger"
 	"git.miem.hse.ru/1206/app/storage/s3"
 	"gopkg.in/yaml.v3"
@@ -14,9 +15,10 @@ import (
 
 type Config struct {
 	// Структура конфига
-	App     App           `yaml:"mode"`
-	Logger  logger.Config `yaml:"logger"`
-	Storage s3.Config     `yaml:"storage"`
+	App     App            `yaml:"mode"`
+	Logger  logger.Config  `yaml:"logger"`
+	Storage s3.Config      `yaml:"storage"`
+	GRPC    app.GRPCConfig `yaml:"grpc"`
 }
 
 func Init() *Config {
