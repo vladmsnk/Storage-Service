@@ -7,6 +7,7 @@ require github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 //.git/config
 require (
 	aead.dev/minisign v0.2.0 // indirect
 	git.miem.hse.ru/1206/app v0.0.2-CM24-04 // indirect
+	git.miem.hse.ru/1206/proto v0.0.4-CM24-01 // indirect
 	github.com/Azure/go-ansiterm v0.0.0-20170929234023-d6e3b3328b78 // indirect
 	github.com/Microsoft/go-winio v0.5.2 // indirect
 	github.com/Nvveen/Gotty v0.0.0-20120604004816-cd527374f1e5 // indirect

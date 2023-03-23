@@ -185,6 +185,10 @@ git.miem.hse.ru/1206/app v0.0.2-CM24-04 h1:H0Uq2yb7kFE/KnFqtcHeoTLt354TG8KNRiw0y
 git.miem.hse.ru/1206/app v0.0.2-CM24-04/go.mod h1:Qx8SnWgXDFIISmCAhUXYcmM7gdlCcU+vvju0irhZlic=
 git.miem.hse.ru/1206/app v0.0.2 h1:tffEpR7ddwrkV9jnw1N7MJEl7NT/FImJNZxlrNwSgFc=
 git.miem.hse.ru/1206/app v0.0.2/go.mod h1:S3Rvdx+NyTgWVRZBG8dzztFuSGeW/0jTpkdB8zTAhlY=
+git.miem.hse.ru/1206/proto v0.0.4-CM24-01 h1:9DqWAdKceZMnbZbLgzTiKFHOQGARxbjRzi/jKT/2R0g=
+git.miem.hse.ru/1206/proto v0.0.4-CM24-01/go.mod h1:7KwuuXQ5ZMQDRR5yr0DqTWRGUtHpDGCbeNB1qfE88tY=
+git.miem.hse.ru/1206/proto v0.0.4 h1:Qyj+d6mZTqZlg+EYKY/iCPRxP08G26AtMGNGOjsISRI=
+git.miem.hse.ru/1206/proto v0.0.4/go.mod h1:7KwuuXQ5ZMQDRR5yr0DqTWRGUtHpDGCbeNB1qfE88tY=
 github.com/Azure/go-ansiterm v0.0.0-20170929234023-d6e3b3328b78 h1:w+iIsaOQNcT7OZ575w+acHgRric5iCyQh+xv+KJ4HB8=
 github.com/Azure/go-ansiterm v0.0.0-20170929234023-d6e3b3328b78/go.mod h1:LmzpDX56iTiv29bbRTIsUNlaFfuhWRQBWjQdVyAevI8=
 github.com/Azure/go-ntlmssp v0.0.0-20220621081337-cb9428e4ac1e/go.mod h1:chxPXzSsl7ZWRAuOIE23GDNzjWuZquvFlgA8xmpunjU=
