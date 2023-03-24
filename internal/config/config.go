@@ -4,7 +4,6 @@ import (
 	"flag"
 	"git.miem.hse.ru/1206/app"
 	"git.miem.hse.ru/1206/app/logger"
-	"git.miem.hse.ru/1206/app/storage/s3"
 	"gopkg.in/yaml.v3"
 	"log"
 	"os"
@@ -17,7 +16,7 @@ type Config struct {
 	// Структура конфига
 	App     App            `yaml:"mode"`
 	Logger  logger.Config  `yaml:"logger"`
-	Storage s3.Config      `yaml:"storage"`
+	Storage Storage        `yaml:"storage"`
 	GRPC    app.GRPCConfig `yaml:"grpc"`
 }
 
@@ -41,4 +40,12 @@ func Init() *Config {
 
 type App struct {
 	Mode string `yaml:"mode"`
+}
+
+type Storage struct {
+	Host            string `yaml:"host"`
+	Port            string `yaml:"port"`
+	AccessKeyId     string `yaml:"access_key_id"`
+	SecretAccessKey string `yaml:"secret_access_key"`
+	UseSsl          bool   `yaml:"use_ssl"`
 }

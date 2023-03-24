@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"git.miem.hse.ru/1206/app/logger"
-	"git.miem.hse.ru/1206/app/storage/s3"
+	"git.miem.hse.ru/1206/material-library/internal/client"
 	"git.miem.hse.ru/1206/material-library/internal/config"
 	"git.miem.hse.ru/1206/material-library/internal/domain"
 	"git.miem.hse.ru/1206/material-library/internal/domain/repository"
@@ -13,11 +13,11 @@ func NewDefault(cfg *config.Config) *Cmd {
 	c := &Cmd{}
 	logger.Init(&cfg.Logger)
 
-	err := s3.InitConnect(&cfg.Storage)
+	cl, err := client.NewStorageClient(&cfg.Storage)
 	if err != nil {
 		logger.Get().Fatal(err)
 	}
-	useCase := domain.NewUseCase(repository.NewStorageRepository(), repository.NewMaterialInfoRepo())
+	useCase := domain.NewUseCase(repository.NewStorageRepository(cl), repository.NewMaterialInfoRepo())
 
 	c.grpcServer, err = service.NewLibraryServer(&cfg.GRPC, *useCase)
 	if err != nil {
