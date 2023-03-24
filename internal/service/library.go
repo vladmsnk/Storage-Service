@@ -14,7 +14,7 @@ func (s *LibraryServer) UploadMaterial(stream pb.Library_UploadMaterialServer) e
 	}
 
 	data := bytes.Buffer{}
-	fileSize := 0
+	var fileSize int64
 	for {
 
 		dataReq, err := stream.Recv()
@@ -25,7 +25,7 @@ func (s *LibraryServer) UploadMaterial(stream pb.Library_UploadMaterialServer) e
 			return err
 		}
 		chunkData := dataReq.GetChunkData()
-		fileSize += len(chunkData)
+		fileSize += int64(len(chunkData))
 		_, err = data.Write(chunkData)
 		if err != nil {
 			return err
@@ -33,8 +33,10 @@ func (s *LibraryServer) UploadMaterial(stream pb.Library_UploadMaterialServer) e
 	}
 
 	reader := bytes.NewReader(data.Bytes())
-	uploadMaterialDTO := mapper.UploadMaterialRequest(metaDataRequest, reader)
-	s.uc.UploadMaterial(&uploadMaterialDTO)
-	stream.SendAndClose(&pb.UploadMaterialResponse{})
-	return nil
+	uploadMaterialDTO := mapper.UploadMaterialRequest(metaDataRequest, fileSize, reader)
+	_, err = s.uc.UploadMaterial(&uploadMaterialDTO)
+	if err != nil {
+		return err
+	}
+	return stream.SendAndClose(&pb.UploadMaterialResponse{})
 }

@@ -6,7 +6,7 @@ require github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 // indirect; 
 
 require (
 	git.miem.hse.ru/1206/app v0.0.2-CM24-04
-	git.miem.hse.ru/1206/proto v0.0.4-CM24-02
+	git.miem.hse.ru/1206/proto v0.0.4-CM24-03
 	github.com/golang/mock v1.6.0
 	github.com/ory/dockertest/v3 v3.9.1
 	go.uber.org/zap v1.24.0

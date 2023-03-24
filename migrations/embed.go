@@ -5,8 +5,6 @@ import (
 	"path"
 )
 
-// Здесь обычно находятся методы, отвечающие за накатывание миграций
-
 var (
 	//go:embed postgres/*.up.sql
 	UpMigrations embed.FS

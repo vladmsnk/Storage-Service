@@ -22,9 +22,9 @@ func (u *UseCase) UploadMaterial(m *dto.UploadMaterialRequest) (*dto.UploadMater
 	uploadMaterialInfo := m.FromDTOInfo(materialID)
 	err = u.materialRepo.UploadMaterialInfo(&uploadMaterialInfo)
 	if err != nil {
-		u.storageRepo.DeleteMaterialByObjectName(m.Bucket, m.Title) //compensate
+		u.storageRepo.DeleteMaterialByObjectName(m.Title) //compensate
 		return nil, err
 	}
 
-	return &dto.UploadMaterialResponse{}, nil
+	return &dto.UploadMaterialResponse{MaterialID: materialID, Size: m.Size}, nil
 }

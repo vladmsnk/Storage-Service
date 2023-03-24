@@ -4,20 +4,18 @@ import (
 	"flag"
 	"git.miem.hse.ru/1206/app"
 	"git.miem.hse.ru/1206/app/logger"
+	"git.miem.hse.ru/1206/app/storage/stpg"
 	"gopkg.in/yaml.v3"
 	"log"
 	"os"
 )
 
-// Ну эта директория особо в пояснениях не нуждается.
-// Здесь находится структура конфига и его инициализация.
-
 type Config struct {
-	// Структура конфига
-	App     App            `yaml:"mode"`
-	Logger  logger.Config  `yaml:"logger"`
-	Storage Storage        `yaml:"storage"`
-	GRPC    app.GRPCConfig `yaml:"grpc"`
+	App      App            `yaml:"mode"`
+	Logger   logger.Config  `yaml:"logger"`
+	Storage  Storage        `yaml:"storage"`
+	GRPC     app.GRPCConfig `yaml:"grpc"`
+	Postgres stpg.Config    `yaml:"psql"`
 }
 
 func Init() *Config {
