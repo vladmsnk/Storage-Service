@@ -24,7 +24,6 @@ func NewLibraryServer(cfg *app.GRPCConfig, uc domain.UseCase) (*app.GRPCServer, 
 	)
 
 	grpcServer, err := app.NewGRPCServer(cfg, opts...)
-
 	pb.RegisterLibraryServer(grpcServer.Ser, &LibraryServer{uc: uc})
 	if err != nil {
 		return nil, errs.New(err)

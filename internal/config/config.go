@@ -48,4 +48,5 @@ type Storage struct {
 	AccessKeyId     string `yaml:"access_key_id"`
 	SecretAccessKey string `yaml:"secret_access_key"`
 	UseSsl          bool   `yaml:"use_ssl"`
+	BucketName      string `yaml:"bucket_name"`
 }

@@ -17,9 +17,9 @@ func NewStorageClient(cfg *config.Storage) (*StorageClient, error) {
 		Creds:  credentials.NewStaticV4(cfg.AccessKeyId, cfg.SecretAccessKey, ""),
 		Secure: cfg.UseSsl,
 	}
-	client, err := minio.New(fmt.Sprintf("%s:%s", cfg.Host, cfg.Port), options)
+	s3Client, err := minio.New(fmt.Sprintf("%s:%s", cfg.Host, cfg.Port), options)
 	if err != nil {
 		return nil, err
 	}
-	return &StorageClient{Client: client}, err
+	return &StorageClient{Client: s3Client}, err
 }

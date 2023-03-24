@@ -1,8 +1,9 @@
 package model
 
 type UploadMaterialInfo struct {
-	Author   string
-	Title    string
-	FileType string
-	FileLink string
+	MaterialID string
+	Author     string
+	Title      string
+	FileType   string
+	FileLink   string
 }
