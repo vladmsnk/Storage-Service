@@ -14,16 +14,16 @@ type UploadMaterialRequest struct {
 	Reader   *bytes.Reader
 }
 
-func (u UploadMaterialRequest) FromDTOInfo(materialId string) model.UploadMaterialInfo {
-	return model.UploadMaterialInfo{MaterialID: materialId,
+func (u UploadMaterialRequest) FromDTOInfo(materialId string) model.MaterialInfo {
+	return model.MaterialInfo{MaterialID: materialId,
 		Author:   u.Author,
 		Title:    u.Title,
 		FileType: u.FileType,
 		FileLink: u.FileLink}
 }
 
-func (u UploadMaterialRequest) FromDTO() model.UploadMaterial {
-	return model.UploadMaterial{
+func (u UploadMaterialRequest) FromDTO() model.Material {
+	return model.Material{
 		ObjectName:  u.Title,
 		ObjectSize:  u.Size,
 		ContentType: u.FileType,

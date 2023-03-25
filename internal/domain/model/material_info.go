@@ -1,6 +1,6 @@
 package model
 
-type UploadMaterialInfo struct {
+type MaterialInfo struct {
 	MaterialID string
 	Author     string
 	Title      string

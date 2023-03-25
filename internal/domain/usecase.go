@@ -1,6 +1,10 @@
 package domain
 
-import "git.miem.hse.ru/1206/material-library/internal/dto"
+import (
+	"git.miem.hse.ru/1206/app/errs"
+	"git.miem.hse.ru/1206/material-library/internal/body"
+	"git.miem.hse.ru/1206/material-library/internal/dto"
+)
 
 type UseCase struct {
 	storageRepo  StorageRepo
@@ -15,6 +19,13 @@ func (u *UseCase) UploadMaterial(m *dto.UploadMaterialRequest) (*dto.UploadMater
 
 	uploadMaterial := m.FromDTO()
 
+	object, err := u.storageRepo.GetMaterialByObjectName(uploadMaterial.ObjectName)
+	if err != nil {
+		return nil, err
+	}
+	if object != nil {
+		return nil, errs.New(err, body.ErrAlreadyExists)
+	}
 	materialID, err := u.storageRepo.UploadMaterial(&uploadMaterial)
 	if err != nil {
 		return nil, err

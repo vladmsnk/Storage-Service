@@ -1,11 +1,13 @@
 package repository
 
 import (
+	"bytes"
 	"context"
 	"git.miem.hse.ru/1206/material-library/internal/client"
 	"git.miem.hse.ru/1206/material-library/internal/config"
 	"git.miem.hse.ru/1206/material-library/internal/domain/model"
 	"github.com/minio/minio-go/v7"
+	"io"
 )
 
 // StorageRepository repository layer with S3 connection
@@ -18,7 +20,7 @@ func NewStorageRepository(storage *client.StorageClient, config *config.Storage)
 	return &StorageRepository{storage: storage, config: config}
 }
 
-func (s *StorageRepository) UploadMaterial(m *model.UploadMaterial) (string, error) {
+func (s *StorageRepository) UploadMaterial(m *model.Material) (string, error) {
 
 	uploadInfo, err := s.storage.Client.PutObject(context.Background(), s.config.BucketName, m.ObjectName, m.Reader,
 		m.ObjectSize,
@@ -36,3 +38,20 @@ func (s *StorageRepository) DeleteMaterialByObjectName(objectName string) error 
 	}
 	return nil
 }
+
+func (s *StorageRepository) GetMaterialByObjectName(objectName string) (*model.Material, error) {
+	object, err := s.storage.Client.GetObject(context.Background(), s.config.BucketName, objectName, minio.GetObjectOptions{})
+	if err != nil {
+		return nil, err
+	}
+	data, err := io.ReadAll(object)
+	if err != nil {
+		return nil, err
+	}
+	return &model.Material{Reader: bytes.NewReader(data)}, nil
+}
+
+//func (s *StorageRepository) CheckMaterialExistsByObjectName(objectName string) (bool, error) {
+//	return s.storage.Client.
+//
+//}

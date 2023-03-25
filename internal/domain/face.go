@@ -6,12 +6,13 @@ import (
 )
 
 type StorageRepo interface {
-	UploadMaterial(material *model.UploadMaterial) (string, error)
+	UploadMaterial(material *model.Material) (string, error)
 	DeleteMaterialByObjectName(objectName string) error
+	GetMaterialByObjectName(objectName string) (*model.Material, error)
 }
 
 type MaterialInfoRepo interface {
-	UploadMaterialInfo(info *model.UploadMaterialInfo) error
+	UploadMaterialInfo(info *model.MaterialInfo) error
 }
 
 type Storage interface {

@@ -17,7 +17,7 @@ func NewMaterialInfoRepo() *MaterialInfoRepo {
 	return &MaterialInfoRepo{postgres: stpg.Gist()}
 }
 
-func (r *MaterialInfoRepo) UploadMaterialInfo(i *model.UploadMaterialInfo) error {
+func (r *MaterialInfoRepo) UploadMaterialInfo(i *model.MaterialInfo) error {
 	err := r.postgres.QueryTx(context.Background(), func(tx *sqlx.Tx) error {
 		_, err := tx.Exec(body.SQLInsertMaterialInfo, i.MaterialID, i.Author, i.Title, i.FileType, i.FileLink)
 		if err != nil {
