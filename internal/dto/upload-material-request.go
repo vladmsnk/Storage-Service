@@ -27,5 +27,6 @@ func (u UploadMaterialRequest) FromDTO() model.Material {
 		ObjectName:  u.Title,
 		ObjectSize:  u.Size,
 		ContentType: u.FileType,
+		Size:        u.Size,
 		Reader:      u.Reader}
 }

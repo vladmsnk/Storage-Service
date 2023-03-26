@@ -33,9 +33,9 @@ func (s *LibraryServer) UploadMaterial(stream pb.Library_UploadMaterialServer) e
 	}
 	reader := bytes.NewReader(data.Bytes())
 	uploadMaterialDTO := mapper.UploadMaterialRequest(metaDataRequest, fileSize, reader)
-	_, err = s.uc.UploadMaterial(&uploadMaterialDTO)
+	res, err := s.uc.UploadMaterial(&uploadMaterialDTO)
 	if err != nil {
 		return err
 	}
-	return stream.SendAndClose(&pb.UploadMaterialResponse{})
+	return stream.SendAndClose(&pb.UploadMaterialResponse{Id: res.MaterialID, Size: res.Size})
 }

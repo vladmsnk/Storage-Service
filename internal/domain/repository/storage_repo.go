@@ -22,13 +22,16 @@ func NewStorageRepository(storage *client.StorageClient, config *config.Storage)
 
 func (s *StorageRepository) UploadMaterial(m *model.Material) (string, error) {
 
-	uploadInfo, err := s.storage.Client.PutObject(context.Background(), s.config.BucketName, m.ObjectName, m.Reader,
+	uploadInfo, err := s.storage.Client.PutObject(context.Background(),
+		s.config.BucketName,
+		m.ObjectName,
+		m.Reader,
 		m.ObjectSize,
 		minio.PutObjectOptions{ContentType: m.ContentType})
 	if err != nil {
 		return "", err
 	}
-	return uploadInfo.Key, nil
+	return uploadInfo.ETag, nil
 }
 
 func (s *StorageRepository) DeleteMaterialByObjectName(objectName string) error {
