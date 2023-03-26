@@ -31,7 +31,6 @@ func (s *LibraryServer) UploadMaterial(stream pb.Library_UploadMaterialServer) e
 			return err
 		}
 	}
-
 	reader := bytes.NewReader(data.Bytes())
 	uploadMaterialDTO := mapper.UploadMaterialRequest(metaDataRequest, fileSize, reader)
 	_, err = s.uc.UploadMaterial(&uploadMaterialDTO)

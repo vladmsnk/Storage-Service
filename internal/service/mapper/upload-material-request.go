@@ -12,6 +12,7 @@ func UploadMaterialRequest(request *pb.UploadMaterialRequest, size int64, reader
 	dto.Title = request.GetInfo().Title
 	dto.FileType = request.GetInfo().Type
 	dto.FileLink = request.GetInfo().Link
+	dto.Size = size
 	dto.Reader = reader
 	return dto
 }

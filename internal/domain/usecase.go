@@ -19,11 +19,11 @@ func (u *UseCase) UploadMaterial(m *dto.UploadMaterialRequest) (*dto.UploadMater
 
 	uploadMaterial := m.FromDTO()
 
-	object, err := u.storageRepo.GetMaterialByObjectName(uploadMaterial.ObjectName)
+	exists, err := u.storageRepo.CheckMaterialExists(uploadMaterial.ObjectName)
 	if err != nil {
 		return nil, err
 	}
-	if object != nil {
+	if exists {
 		return nil, errs.New(err, body.ErrAlreadyExists)
 	}
 	materialID, err := u.storageRepo.UploadMaterial(&uploadMaterial)

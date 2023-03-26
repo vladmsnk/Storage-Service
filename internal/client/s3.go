@@ -13,6 +13,7 @@ type StorageClient struct {
 
 func NewStorageClient(cfg *config.Storage) (*StorageClient, error) {
 	var err error
+	fmt.Println(cfg.AccessKeyId, cfg.SecretAccessKey)
 	options := &minio.Options{
 		Creds:  credentials.NewStaticV4(cfg.AccessKeyId, cfg.SecretAccessKey, ""),
 		Secure: cfg.UseSsl,

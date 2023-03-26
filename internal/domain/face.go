@@ -9,6 +9,7 @@ type StorageRepo interface {
 	UploadMaterial(material *model.Material) (string, error)
 	DeleteMaterialByObjectName(objectName string) error
 	GetMaterialByObjectName(objectName string) (*model.Material, error)
+	CheckMaterialExists(objectName string) (bool, error)
 }
 
 type MaterialInfoRepo interface {

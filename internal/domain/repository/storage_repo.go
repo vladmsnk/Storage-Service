@@ -51,6 +51,18 @@ func (s *StorageRepository) GetMaterialByObjectName(objectName string) (*model.M
 	return &model.Material{Reader: bytes.NewReader(data)}, nil
 }
 
+func (s *StorageRepository) CheckMaterialExists(objectName string) (bool, error) {
+	_, err := s.storage.Client.StatObject(context.Background(), s.config.BucketName, objectName, minio.StatObjectOptions{})
+	if err != nil {
+		if minio.ToErrorResponse(err).Code == "NoSuchKey" {
+			return false, nil
+		} else {
+			return false, err
+		}
+	}
+	return true, nil
+}
+
 //func (s *StorageRepository) CheckMaterialExistsByObjectName(objectName string) (bool, error) {
 //	return s.storage.Client.
 //
