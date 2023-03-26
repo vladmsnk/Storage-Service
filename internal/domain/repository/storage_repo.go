@@ -6,6 +6,7 @@ import (
 	"git.miem.hse.ru/1206/material-library/internal/client"
 	"git.miem.hse.ru/1206/material-library/internal/config"
 	"git.miem.hse.ru/1206/material-library/internal/domain/model"
+	"github.com/google/uuid"
 	"github.com/minio/minio-go/v7"
 	"io"
 )
@@ -20,18 +21,17 @@ func NewStorageRepository(storage *client.StorageClient, config *config.Storage)
 	return &StorageRepository{storage: storage, config: config}
 }
 
-func (s *StorageRepository) UploadMaterial(m *model.Material) (string, error) {
-
-	uploadInfo, err := s.storage.Client.PutObject(context.Background(),
+func (s *StorageRepository) UploadMaterial(m *model.Material) (uuid.UUID, error) {
+	_, err := s.storage.Client.PutObject(context.Background(),
 		s.config.BucketName,
-		m.ObjectName,
+		m.ObjectName.String(),
 		m.Reader,
 		m.ObjectSize,
 		minio.PutObjectOptions{ContentType: m.ContentType})
 	if err != nil {
-		return "", err
+		return uuid.UUID{}, err
 	}
-	return uploadInfo.ETag, nil
+	return m.ObjectName, nil
 }
 
 func (s *StorageRepository) DeleteMaterialByObjectName(objectName string) error {

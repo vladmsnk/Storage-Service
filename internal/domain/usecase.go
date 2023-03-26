@@ -1,9 +1,8 @@
 package domain
 
 import (
-	"git.miem.hse.ru/1206/app/errs"
-	"git.miem.hse.ru/1206/material-library/internal/body"
 	"git.miem.hse.ru/1206/material-library/internal/dto"
+	"github.com/google/uuid"
 )
 
 type UseCase struct {
@@ -17,21 +16,16 @@ func NewUseCase(r StorageRepo, m MaterialInfoRepo) *UseCase {
 
 func (u *UseCase) UploadMaterial(m *dto.UploadMaterialRequest) (*dto.UploadMaterialResponse, error) {
 
-	uploadMaterial := m.FromDTO()
+	uploadMaterial := m.FromDTO(uuid.New())
 
-	exists, err := u.storageRepo.CheckMaterialExists(uploadMaterial.ObjectName)
-	if err != nil {
-		return nil, err
-	}
-	if exists {
-		return nil, errs.New(err, body.ErrAlreadyExists)
-	}
 	materialID, err := u.storageRepo.UploadMaterial(&uploadMaterial)
 	if err != nil {
 		return nil, err
 	}
 	uploadMaterialInfo := m.FromDTOInfo(materialID)
+
 	err = u.materialRepo.UploadMaterialInfo(&uploadMaterialInfo)
+
 	if err != nil {
 		u.storageRepo.DeleteMaterialByObjectName(m.Title) //compensate
 		return nil, err

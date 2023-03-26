@@ -5,6 +5,6 @@ import (
 	"git.miem.hse.ru/1206/proto/pb"
 )
 
-func UploadMaterialResponse(response dto.UploadMaterialResponse) *pb.UploadMaterialResponse {
-	return &pb.UploadMaterialResponse{Id: response.MaterialID, Size: response.Size}
+func UploadMaterialResponse(response *dto.UploadMaterialResponse) *pb.UploadMaterialResponse {
+	return &pb.UploadMaterialResponse{Id: response.MaterialID.String(), Size: response.Size}
 }

@@ -1,7 +1,9 @@
 package model
 
+import "github.com/google/uuid"
+
 type MaterialInfo struct {
-	MaterialID string
+	MaterialID uuid.UUID
 	Author     string
 	Title      string
 	FileType   string

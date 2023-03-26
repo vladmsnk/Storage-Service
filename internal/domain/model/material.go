@@ -1,9 +1,12 @@
 package model
 
-import "bytes"
+import (
+	"bytes"
+	"github.com/google/uuid"
+)
 
 type Material struct {
-	ObjectName  string
+	ObjectName  uuid.UUID
 	ObjectSize  int64
 	ContentType string
 	Size        int64
