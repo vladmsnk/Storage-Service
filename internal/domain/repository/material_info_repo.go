@@ -27,3 +27,14 @@ func (r *MaterialInfoRepo) UploadMaterialInfo(i *model.MaterialInfo) error {
 	})
 	return err
 }
+
+func (r *MaterialInfoRepo) DeleteMaterialInfo(materialID string) error {
+	err := r.postgres.QueryTx(context.Background(), func(tx *sqlx.Tx) error {
+		_, err := tx.Exec(body.SQLDeleteMaterialInfo, materialID)
+		if err != nil {
+			return err
+		}
+		return nil
+	})
+	return err
+}

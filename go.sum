@@ -48,6 +48,8 @@ git.miem.hse.ru/1206/proto v0.0.4-CM24-02 h1:ya6o6U3k6VJgc3Y026m3ONAuabP+Pi0Od5m
 git.miem.hse.ru/1206/proto v0.0.4-CM24-02/go.mod h1:7KwuuXQ5ZMQDRR5yr0DqTWRGUtHpDGCbeNB1qfE88tY=
 git.miem.hse.ru/1206/proto v0.0.4-CM24-03 h1:Hx06QvjQ9bhlKCs0HBvKAmQQLh5y9hkHgnpEdZKv74s=
 git.miem.hse.ru/1206/proto v0.0.4-CM24-03/go.mod h1:7KwuuXQ5ZMQDRR5yr0DqTWRGUtHpDGCbeNB1qfE88tY=
+git.miem.hse.ru/1206/proto v0.0.4-CM24-04 h1:UuyDWWjXziCBFgMuP+1Ip7HxLLW0lB6YQUPD5HEvMK0=
+git.miem.hse.ru/1206/proto v0.0.4-CM24-04/go.mod h1:7KwuuXQ5ZMQDRR5yr0DqTWRGUtHpDGCbeNB1qfE88tY=
 github.com/Azure/go-ansiterm v0.0.0-20170929234023-d6e3b3328b78 h1:w+iIsaOQNcT7OZ575w+acHgRric5iCyQh+xv+KJ4HB8=
 github.com/Azure/go-ansiterm v0.0.0-20170929234023-d6e3b3328b78/go.mod h1:LmzpDX56iTiv29bbRTIsUNlaFfuhWRQBWjQdVyAevI8=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=

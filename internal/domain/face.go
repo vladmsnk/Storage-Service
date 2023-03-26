@@ -15,8 +15,10 @@ type StorageRepo interface {
 
 type MaterialInfoRepo interface {
 	UploadMaterialInfo(info *model.MaterialInfo) error
+	DeleteMaterialInfo(materialID string) error
 }
 
 type Storage interface {
+	DeleteMaterial(d *dto.DeleteMaterialRequest) error
 	UploadMaterial(material *dto.UploadMaterialRequest) (*dto.UploadMaterialResponse, error)
 }

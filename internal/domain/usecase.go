@@ -33,3 +33,12 @@ func (u *UseCase) UploadMaterial(m *dto.UploadMaterialRequest) (*dto.UploadMater
 
 	return &dto.UploadMaterialResponse{MaterialID: materialID, Size: m.Size}, nil
 }
+
+func (u *UseCase) DeleteMaterial(d *dto.DeleteMaterialRequest) error {
+	err := u.materialRepo.DeleteMaterialInfo(d.MaterialID)
+	if err != nil {
+		return err
+	}
+
+	return u.storageRepo.DeleteMaterialByObjectName(d.MaterialID)
+}

@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS material_info;
+DROP TABLE IF EXISTS public.material_info;

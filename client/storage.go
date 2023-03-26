@@ -22,10 +22,10 @@ type TestMaterial struct {
 	fileLink  string
 }
 
-func uploadMaterial(client pb.LibraryClient) error {
+func uploadMaterial(client pb.LibraryClient) (string, error) {
 	file, err := os.Open(filePath)
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	testMaterial := TestMaterial{author: "vlad", fileTitle: "lecture", fileType: "mp4", fileLink: filePath}
@@ -35,7 +35,7 @@ func uploadMaterial(client pb.LibraryClient) error {
 
 	stream, err := client.UploadMaterial(ctx)
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	infoReq := &pb.UploadMaterialRequest{
@@ -50,7 +50,7 @@ func uploadMaterial(client pb.LibraryClient) error {
 	}
 	err = stream.Send(infoReq)
 	if err != nil {
-		return err
+		return "", err
 	}
 	reader := bufio.NewReader(file)
 	buffer := make([]byte, 1024)
@@ -61,7 +61,7 @@ func uploadMaterial(client pb.LibraryClient) error {
 			break
 		}
 		if err != nil {
-			return err
+			return "", err
 		}
 		req := &pb.UploadMaterialRequest{
 			Data: &pb.UploadMaterialRequest_ChunkData{
@@ -70,20 +70,28 @@ func uploadMaterial(client pb.LibraryClient) error {
 		}
 		err = stream.Send(req)
 		if err != nil {
-			return err
+			return "", err
 		}
 	}
 	res, err := stream.CloseAndRecv()
 	if err != nil {
+		return "", err
+	}
+	id := res.GetId()
+	size := res.GetSize()
+	log.Printf("Video uploaded with id: %s, size: %d", id, size)
+	return id, nil
+}
+
+func deleteMaterial(client pb.LibraryClient, id string) error {
+	_, err := client.DeleteMaterial(context.Background(), &pb.DeleteMaterialRequest{MaterialId: id})
+	if err != nil {
 		return err
 	}
-	log.Printf("Video uploaded with id: %s, size: %d", res.GetId(), res.GetSize())
 	return nil
 }
 
 func main() {
-	//creds, err := credentials.NewServerTLSFromFile("server.crt", "")
-
 	conn, err := grpc.Dial("localhost:9002", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatal("Could not establish connection!", err)
@@ -91,6 +99,17 @@ func main() {
 	defer conn.Close()
 
 	client := pb.NewLibraryClient(conn)
-	err = uploadMaterial(client)
-	log.Fatal(err)
+
+	//test upload material
+	id, err := uploadMaterial(client)
+	if err != nil {
+		log.Fatal("Error in uploading material", err)
+	}
+
+	//test delete material
+	err = deleteMaterial(client, id)
+	if err != nil {
+		log.Fatal("Error in deleting material", err)
+	}
+
 }

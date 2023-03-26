@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS material_info (
+CREATE TABLE IF NOT EXISTS public.material_info (
     material_id uuid PRIMARY KEY,
     author      VARCHAR(255),
     title       VARCHAR(255),

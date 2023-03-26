@@ -2,8 +2,10 @@ package service
 
 import (
 	"bytes"
+	"context"
 	"git.miem.hse.ru/1206/material-library/internal/service/mapper"
 	"git.miem.hse.ru/1206/proto/pb"
+	"google.golang.org/protobuf/types/known/emptypb"
 	"io"
 )
 
@@ -38,4 +40,11 @@ func (s *LibraryServer) UploadMaterial(stream pb.Library_UploadMaterialServer) e
 		return err
 	}
 	return stream.SendAndClose(mapper.UploadMaterialResponse(uploadMaterialResponseDTO))
+}
+
+func (s *LibraryServer) DeleteMaterial(_ context.Context, request *pb.DeleteMaterialRequest) (*emptypb.Empty, error) {
+	deleteMaterialDTO := mapper.DeleteMaterialRequest(request)
+	err := s.uc.DeleteMaterial(&deleteMaterialDTO)
+
+	return &emptypb.Empty{}, err
 }
